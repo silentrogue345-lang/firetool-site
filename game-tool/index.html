@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FireTool Lab</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: sans-serif;
+      background: #10131c;
+      color: white;
+    }
+    main {
+      max-width: 480px;
+      margin: 40px auto;
+      padding: 24px;
+      background: #1c2230;
+      border-radius: 16px;
+    }
+    input, button {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 13px;
+      margin-top: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    input { background: #10131c; color: white; border: 1px solid #596273; }
+    button { background: #53d69a; border: 0; font-weight: bold; }
+    #menu { display: none; margin-top: 24px; }
+    .item { padding: 14px; margin-top: 10px; background: #293246; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>FireTool Lab</h1>
+    <p>ใส่ Key ที่ได้รับเพื่อเข้าสู่เมนูเกมเสริม</p>
+    <input id="key" placeholder="กรอก Key ของคุณ">
+    <button onclick="unlock()">ปลดล็อก</button>
+    <p id="message"></p>
+    <section id="menu">
+      <h2>เมนูเกมเสริม</h2>
+      <div class="item">ฝึกเล็ง</div>
+      <div class="item">บันทึกค่าความไว</div>
+      <div class="item">บันทึกสถิติการเล่น</div>
+    </section>
+  </main>
+  <script>
+    function unlock() {
+      document.getElementById('message').textContent =
+        'หน้านี้เป็นตัวอย่าง ยังไม่ได้เชื่อมตรวจสอบ Key ออนไลน์';
+      document.getElementById('menu').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
