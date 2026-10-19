@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FireTool Admin</title>
+<style>
+body{font-family:sans-serif;background:#10131c;color:#fff;padding:20px}
+main{max-width:480px;margin:30px auto;background:#1c2230;padding:20px;border-radius:14px}
+input,button{box-sizing:border-box;width:100%;padding:12px;margin:7px 0;border-radius:8px}
+input{background:#10131c;color:white;border:1px solid #596273}
+button{background:#53d69a;border:0;font-weight:bold}
+.item{background:#293246;padding:12px;margin-top:8px;border-radius:8px}
+label{display:block;margin-top:12px}
+</style>
+</head>
+<body>
+<main>
+<h1>FireTool Admin</h1>
+<p>ต้นแบบจัดการ Key และเมนู</p>
+<label>ชื่อ Key</label>
+<input id="key" placeholder="เช่น FRIEND-001">
+<label>วันหมดอายุ</label>
+<select id="days">
+<option value="1">1 วัน</option>
+<option value="7">7 วัน</option>
+<option value="30">30 วัน</option>
+<option value="90">90 วัน</option>
+</select>
+<button onclick="createKey()">สร้าง Key</button>
+<h2>เมนูเกมเสริม</h2>
+<div id="menus"></div>
+<h2>รายการ Key (ตัวอย่างในเครื่องนี้)</h2>
+<div id="keys"></div>
+<p>หมายเหตุ: ต้นแบบนี้เก็บข้อมูลในเบราว์เซอร์เครื่องนี้เท่านั้น ยังไม่ซิงก์กับเว็บผู้ใช้</p>
+</main>
+<script>
+const menuNames=["ฝึกเล็ง","บันทึกค่าความไว","บันทึกสถิติ"];
+const menus=document.getElementById("menus");
+menuNames.forEach((name,i)=>{
+ const label=document.createElement("label");
+ const box=document.createElement("input");
+ box.type="checkbox";box.checked=true;box.style.width="auto";
+ box.onchange=()=>{localStorage.setItem("menu"+i,box.checked)};
+ if(localStorage.getItem("menu"+i)==="false")box.checked=false;
+ label.append(box,document.createTextNode(" "+name));
+ menus.append(label);
+});
+function createKey(){
+ const key=document.getElementById("key").value.trim();
+ if(!key){alert("กรุณาใส่ชื่อ Key");return}
+ const expiry=new Date();expiry.setDate(expiry.getDate()+Number(document.getElementById("days").value));
+ const item=document.createElement("div");item.className="item";
+ item.textContent=key+" — หมดอายุ "+expiry.toLocaleDateString("th-TH");
+ document.getElementById("keys").append(item);
+ document.getElementById("key").value="";
+}
+</script>
+</body>
+</html>
